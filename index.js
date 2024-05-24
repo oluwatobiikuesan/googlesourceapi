@@ -1,7 +1,9 @@
+//changed in packages json type to module (check)
+//changed from require to import
+//easier to manage, without have to add module.export
+
 import axios from "axios";
 import express from "express";
-
-
 const  app = express();
 import {FakeData} from "./fakedata.js";
 import {KEYWORDS} from "./keywords.js";
@@ -13,13 +15,13 @@ d4a24b48c2b964e64
 
 */
 
-const cxcode = "d4a24b48c2b964e64";
+const CX_CODE = "d4a24b48c2b964e64";
 const pages = " 10";
 const API_KEY = "AIzaSyARlU6D3gFMnH80BTLyT9A-OetyixEylWY";
 const port = process.env.port || 5000;
 /*
 *** comment
-This part is where the  the link from the searched keyword is extracted and stored in json
+This part is where the link from the searched keyword is extracted and stored in json
 ***
 */
 let extracted_links = []
@@ -52,7 +54,7 @@ app.get("/", (req, res)=>{
 
 
 function getRes(find){
-    axios.get(`https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${cxcode}&q=${find}`,{ method: "GET" })
+    axios.get(`https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${CX_CODE}&q=${find}`,{ method: "GET" })
     .then(response => {
         const rdata = [response.data];
         try{
