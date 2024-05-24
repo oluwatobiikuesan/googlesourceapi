@@ -1,10 +1,10 @@
-const axios = require("axios");
-const express = require("express");
-const cheerio = require("cheerio");
+import axios from "axios";
+import express from "express";
+
+
 const  app = express();
-const fakepage = require("./fakedata");
-let Keywords = require("./keywords")
-Keywords = Keywords.Keywords;
+import {FakeData} from "./fakedata.js";
+import {KEYWORDS} from "./keywords.js";
 /* 
 Engine id/codes >>--------!>
 
@@ -41,12 +41,15 @@ function retriverLinks(dataset){
 }
 
 app.get("/", (req, res)=>{
-var i = 0;
-while(i < Keywords.length){
-    console.log(Keywords[i])
-    getRes(Keywords[i])
-    i++;
-}
+    res.json({
+        "message": "App is running",
+        "status": 200
+    }).status(200);
+
+    for(let keyword of KEYWORDS){
+
+    }
+
 
 function getRes(find){
     axios.get(`https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${cxcode}&q=${find}`,{ method: "GET" })

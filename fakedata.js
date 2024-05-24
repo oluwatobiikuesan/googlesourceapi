@@ -1,4 +1,4 @@
-function FakeData(){
+export function FakeData(){
     let name = "Tobi"
         const data = [{
                 "kind": "customsearch#search",
@@ -529,7 +529,4 @@ function FakeData(){
         ]
 
     return data
-}
-module.exports = {
-    FakeData: FakeData(),
 }
