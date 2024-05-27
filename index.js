@@ -5,14 +5,6 @@ const  app = express();
 const fakepage = require("./fakedata");
 let Keywords = require("./keywords")
 Keywords = Keywords.Keywords;
-/* 
-Engine id/codes >>--------!>
-
-278114db3f7e34d2b
-d4a24b48c2b964e64
-
-*/
-
 const cxcode = "d4a24b48c2b964e64";
 const pages = " 10";
 const API_KEY = "AIzaSyARlU6D3gFMnH80BTLyT9A-OetyixEylWY";
@@ -39,15 +31,6 @@ function retriverLinks(dataset){
     })
     return linksindx; 
 }
-
-app.get("/", (req, res)=>{
-var i = 0;
-while(i < Keywords.length){
-    console.log(Keywords[i])
-    getRes(Keywords[i])
-    i++;
-}
-
 function getRes(find){
     axios.get(`https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${cxcode}&q=${find}`,{ method: "GET" })
     .then(response => {
@@ -61,6 +44,17 @@ function getRes(find){
          }
    })
 }
+function getGlobalData(){
+    var i = 0;
+    while(i < Keywords.length){
+        console.log(Keywords[i])
+        getRes(Keywords[i])
+        i++;
+    }
+}
+
+app.get("/", (req, res)=>{
+getGlobalData();
 })
 
 app.listen(port, () => {

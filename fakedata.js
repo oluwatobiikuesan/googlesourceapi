@@ -1,5 +1,4 @@
 function FakeData(){
-    let name = "Tobi"
         const data = [{
                 "kind": "customsearch#search",
                 "url": {
