@@ -54,7 +54,32 @@ function getGlobalData(){
 }
 
 app.get("/", (req, res)=>{
-getGlobalData();
+const endpoint = "https://api.search.brave.com/res/v1/web/search?q=AfricanAnkaraStylesPics";
+const token = "BSAqUid28vB9Oa8eQNvyb3UyFiggVYy"
+async function Data(){
+    const arr = []
+    fetch(endpoint, {
+        method: "GET",
+        headers: {
+            "X-Subscription-Token": token,
+        }
+    })
+    .then(response =>{
+        return response.json()
+    }).then(data =>{
+        try{
+        const results = data["web"]["results"];
+        results.map(items =>{
+            arr.push(items.url)
+        })
+    }
+    finally{
+        res.send(arr)
+        console.log(arr)
+    }
+    }).catch(err => console.error("testing this"))
+}
+Data();
 })
 
 app.listen(port, () => {
